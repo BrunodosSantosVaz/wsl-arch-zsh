@@ -1,0 +1,173 @@
+# ===================================================================
+# .gitignore for Big Zsh
+# ===================================================================
+
+# ---------------- Backups e Temporários ----------------
+# Backups criados pelos scripts
+*.backup
+*.backup-*
+*~
+*.swp
+*.swo
+
+# ---------------- Cache e Compilados ----------------
+# Cache de completion do ZSH
+.zcompdump
+.zcompdump.*
+*.zwc
+*.zwc.old
+
+# Cache de funções
+.zsh/cache/
+cache/
+
+# ---------------- Histórico e Logs ----------------
+# Histórico do ZSH (privado)
+.zsh_history
+.zhistory
+history
+
+# Logs
+*.log
+logs/
+
+# ---------------- Configurações Privadas ----------------
+# Arquivos de configuração pessoal/local
+*-local.zsh
+*-private.zsh
+*-secret.zsh
+.env
+.env.*
+.envrc
+secrets/
+*.p12
+*.pfx
+*.kdbx
+
+# Configurações específicas de usuário
+99-*.zsh
+local/
+
+# ---------------- IDE e Editores ----------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains
+.idea/
+*.iml
+
+# Vim
+.vim/
+*.vim
+
+# Emacs
+*~
+\#*\#
+.emacs.desktop
+.emacs.desktop.lock
+
+# ---------------- Sistema Operacional ----------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# ---------------- Dependências e Build ----------------
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+ENV/
+
+# Ruby
+.bundle/
+vendor/
+
+# ---------------- Mise / Version Managers ----------------
+# MISE local versions (devem ser definidas por projeto)
+.tool-versions.local
+.mise.local.toml
+
+# NVM
+.nvmrc.local
+
+# ---------------- Git ----------------
+# Git hooks locais (podem conter paths específicos)
+.git/hooks/
+
+# ---------------- Testing e Debug ----------------
+# Scripts de teste temporários
+test_*.sh
+test_*.zsh
+debug_*.sh
+debug_*.zsh
+/tmp/
+
+# Output de benchmarks
+benchmark-results/
+*.benchmark
+
+# ---------------- Documentação Temporária ----------------
+# Rascunhos e WIP
+DRAFT-*
+WIP-*
+TODO-private.md
+
+# ---------------- Específico do Projeto ----------------
+# Descobrir setas (script temporário de debug)
+descobrir_seta.sh
+test_arrow_key.zsh
+
+# Scripts de teste pessoais
+my-*.sh
+my-*.zsh
+
+# ---------------- Outros ----------------
+# Arquivos compactados (não fazer commit de releases aqui)
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Certificados e chaves (NUNCA fazer commit!)
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa
+id_rsa.pub
+
+# ---------------- Permitir Arquivos Importantes ----------------
+# Sempre incluir estes arquivos mesmo que combinem com patterns acima
+!README.md
+!LICENSE
+!COMPATIBILITY.md
+!CONTRIBUTING.md
+!SECURITY.md
+!THIRD_PARTY_NOTICES.md
+!.gitignore
+# Permitir todos os arquivos de configuração principais
+!0[0-9]-*.zsh
+!install-*.sh
+!setup-zshrc.sh
+!uninstall.sh
+!test-setup.sh

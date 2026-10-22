@@ -1,0 +1,80 @@
+# Big Zsh prompt, Arch Linux identity.
+# Palette: Arch blue #1793D1, light #5EC4F5, dark #0B6FA4, grey #8A9BA8.
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 500
+
+format = """
+[╭─](#1793D1)$os$username$hostname$directory$git_branch$git_status$git_state$nodejs$python$rust$golang$cmd_duration
+[╰─](#1793D1)$character"""
+
+[os]
+disabled = false
+format = '[ $symbol ]($style)'
+style = 'bold fg:#ffffff bg:#1793D1'
+
+[os.symbols]
+Arch = '󰣇'
+Linux = ''
+
+[username]
+show_always = true
+style_user = 'bold fg:#ffffff bg:#0B6FA4'
+style_root = 'bold fg:#ffffff bg:#d1393d'
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = false
+style = 'bold fg:#ffffff bg:#0B6FA4'
+format = '[@$hostname ]($style)'
+
+[directory]
+style = 'bold fg:#1793D1'
+format = '[ $path ]($style)[$read_only]($read_only_style)'
+truncation_length = 3
+truncation_symbol = '…/'
+read_only = ' 󰌾'
+read_only_style = 'fg:#d1393d'
+
+[git_branch]
+symbol = ' '
+style = 'fg:#5EC4F5'
+format = '[$symbol$branch]($style) '
+
+[git_status]
+style = 'fg:#8A9BA8'
+format = '[($all_status$ahead_behind)]($style) '
+
+[git_state]
+style = 'fg:#e5c07b'
+
+[cmd_duration]
+min_time = 2000
+style = 'fg:#8A9BA8'
+format = '[ $duration]($style)'
+
+[nodejs]
+symbol = ' '
+style = 'fg:#5EC4F5'
+format = '[$symbol$version]($style) '
+
+[python]
+symbol = ' '
+style = 'fg:#5EC4F5'
+format = '[$symbol$version]($style) '
+
+[rust]
+symbol = ' '
+style = 'fg:#5EC4F5'
+format = '[$symbol$version]($style) '
+
+[golang]
+symbol = ' '
+style = 'fg:#5EC4F5'
+format = '[$symbol$version]($style) '
+
+[character]
+success_symbol = '[❯](bold #1793D1)'
+error_symbol = '[❯](bold #d1393d)'
+vimcmd_symbol = '[❮](bold #5EC4F5)'

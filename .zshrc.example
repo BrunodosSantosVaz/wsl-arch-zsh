@@ -1,0 +1,2 @@
+# Arch Linux (WSL) is the base; this layer adds a small optional layer.
+source "/caminho/para/wsl-arch-zsh/big-zsh.zsh"
