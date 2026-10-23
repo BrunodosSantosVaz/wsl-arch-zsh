@@ -18,11 +18,13 @@ preservando o Bash, os comandos tradicionais e o seu `.bashrc`.
 [![WSL](https://img.shields.io/badge/WSL-2-3A6F8F?style=flat-square&logo=windows&logoColor=FFFFFF&labelColor=0F2433)](#-integração-com-o-windows)
 [![Zsh](https://img.shields.io/badge/shell-Zsh-3A6F8F?style=flat-square&logo=zsh&logoColor=FFFFFF&labelColor=0F2433)](https://www.zsh.org/)
 [![Starship](https://img.shields.io/badge/prompt-Starship-3A6F8F?style=flat-square&logo=starship&logoColor=FFFFFF&labelColor=0F2433)](arch/starship.toml)
+[![Nerd Font](https://img.shields.io/badge/fonte-Nerd%20Font-3A6F8F?style=flat-square&labelColor=0F2433)](#-nerd-font-dependência-obrigatória)
 [![pacman](https://img.shields.io/badge/pacotes-pacman-3A6F8F?style=flat-square&labelColor=0F2433)](install-deps.sh)
 [![Reversível](https://img.shields.io/badge/instala%C3%A7%C3%A3o-revers%C3%ADvel-3A6F8F?style=flat-square&labelColor=0F2433)](#-desinstalação)
 
 <br>
 
+<a href="#-nerd-font-dependência-obrigatória"><img src="https://img.shields.io/badge/Fonte-Nerd%20Font-0F2433?style=for-the-badge&logo=nerdfonts&logoColor=FFFFFF" alt="Nerd Font"></a>
 <a href="#-instalação"><img src="https://img.shields.io/badge/Instalar-3%20comandos-1793D1?style=for-the-badge&logo=gnubash&logoColor=FFFFFF" alt="Instalar"></a>
 <a href="#-o-que-é-adicionado"><img src="https://img.shields.io/badge/Atalhos-Ver%20lista-0F2433?style=for-the-badge&logo=zsh&logoColor=FFFFFF" alt="Atalhos"></a>
 <a href="#-identidade-visual-arch"><img src="https://img.shields.io/badge/Visual-Paleta%20Arch-0F2433?style=for-the-badge&logo=archlinux&logoColor=FFFFFF" alt="Visual"></a>
@@ -46,6 +48,7 @@ preservando o Bash, os comandos tradicionais e o seu `.bashrc`.
 
 - [Princípios](#-princípios)
 - [Compatibilidade](#-compatibilidade)
+- [Nerd Font (dependência)](#-nerd-font-dependência-obrigatória)
 - [Instalação](#-instalação)
 - [O que é adicionado](#-o-que-é-adicionado)
 - [Identidade visual Arch](#-identidade-visual-arch)
@@ -106,9 +109,45 @@ Feito para o **Arch Linux no WSL 2**. Funciona também em Arch nativo e no BigLi
 
 O instalador valida `ID=arch` ou `ID=biglinux` em `/etc/os-release`. Veja [COMPATIBILITY.md](COMPATIBILITY.md).
 
+## 🔤 Nerd Font (dependência obrigatória)
+
+O prompt (logo do Arch, ícone do Git, cadeado) e o `eza --icons` usam glifos que só existem em fontes **[Nerd Font](https://www.nerdfonts.com/)**. Sem uma delas no Windows Terminal, esses símbolos aparecem como quadrados ou `?`. A fonte é instalada **no Windows**, não dentro do WSL, porque quem desenha o texto é o Windows Terminal.
+
+**1. Baixe uma fonte.** Em <https://www.nerdfonts.com/font-downloads> escolha uma (sugestões: **JetBrainsMono Nerd Font**, **CaskaydiaCove Nerd Font** ou **FiraCode Nerd Font**) e baixe o `.zip`. Downloads diretos pelo GitHub, na página de [releases do Nerd Fonts](https://github.com/ryanoasis/nerd-fonts/releases/latest) (por exemplo `JetBrainsMono.zip`).
+
+**2. Instale no Windows.** Extraia o `.zip`, selecione os arquivos `.ttf`, clique com o botão direito e escolha **Instalar para todos os usuários** (ou **Instalar**). Ou, pelo PowerShell, com o [winget](https://learn.microsoft.com/windows/package-manager/winget/) disponível no Windows 11 e no Windows 10 atualizado:
+
+```powershell
+winget install --id DEVCOM.JetBrainsMonoNerdFont
+```
+
+**3. Ative no Windows Terminal.**
+
+1. Abra o Windows Terminal e pressione <kbd>Ctrl</kbd>+<kbd>,</kbd> (Configurações).
+2. Escolha o perfil da sua distribuição Arch (ou **Padrões**, para valer para todos).
+3. Vá em **Aparência** → **Tipo de fonte** e selecione a fonte instalada, por exemplo `JetBrainsMono Nerd Font`.
+4. Clique em **Salvar** e abra uma nova aba.
+
+Se preferir editar o `settings.json` (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd>):
+
+```json
+{
+  "profiles": {
+    "defaults": {
+      "font": { "face": "JetBrainsMono Nerd Font" }
+    }
+  }
+}
+```
+
+O nome exato aparece na lista de fontes do Windows Terminal. Reinicie o terminal se a fonte recém-instalada não aparecer.
+
+> [!NOTE]
+> Em outros terminais (VS Code, por exemplo) configure a mesma fonte: no VS Code, `terminal.integrated.fontFamily`.
+
 ## 🚀 Instalação
 
-Revise os scripts antes de executá-los. O instalador usa `pacman` para dependências oficiais e nunca recebe senha por argumento (fora do root, pede `sudo` direto no terminal).
+Instale primeiro a [Nerd Font](#-nerd-font-dependência-obrigatória) no Windows. Revise os scripts antes de executá-los. O instalador usa `pacman` para dependências oficiais e nunca recebe senha por argumento (fora do root, pede `sudo` direto no terminal).
 
 ```bash
 git clone https://github.com/BrunodosSantosVaz/wsl-arch-zsh.git ~/wsl-arch-zsh
@@ -127,9 +166,6 @@ Se gostar, torne o Zsh o shell padrão (opcional, o Bash continua instalado):
 ```bash
 chsh -s "$(command -v zsh)"
 ```
-
-> [!TIP]
-> Para os ícones do prompt e do `eza`, use uma [Nerd Font](https://www.nerdfonts.com/) no Windows Terminal (Configurações → Perfis → Aparência → Fonte).
 
 <details>
 <summary><b>Pacotes instalados se estiverem faltando</b></summary>
