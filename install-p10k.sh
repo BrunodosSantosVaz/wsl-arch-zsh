@@ -12,5 +12,5 @@ else
     mkdir -p -- "$(dirname -- "$target")"
     git clone --depth=1 --branch "$version" https://github.com/romkatv/powerlevel10k.git "$target"
 fi
-printf '\nPronto. Abra uma nova sessão (exec zsh) e rode: p10k configure\n'
+printf '\nPronto. Abra uma nova sessão (exec zsh). Para refazer o visual: p10k configure\n'
 printf 'Para voltar ao Starship: export BIG_ZSH_PROMPT=starship em ~/.config/big-zsh/local.zsh\n'

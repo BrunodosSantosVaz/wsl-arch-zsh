@@ -48,6 +48,7 @@ else
     printf 'Todas as dependências já estão instaladas.\n'
 fi
 
+"$project_dir/install-p10k.sh"
 "$project_dir/setup-zshrc.sh"
 printf '\nInstalação concluída. Teste com: zsh\n'
 printf 'Para tornar o Zsh padrão depois do teste: chsh -s "$(command -v zsh)"\n'

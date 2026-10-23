@@ -17,7 +17,7 @@ preservando o Bash, os comandos tradicionais e o seu `.bashrc`.
 [![Arch Linux](https://img.shields.io/badge/sistema-Arch%20Linux-3A6F8F?style=flat-square&logo=archlinux&logoColor=FFFFFF&labelColor=0F2433)](#-compatibilidade)
 [![WSL](https://img.shields.io/badge/WSL-2-3A6F8F?style=flat-square&logo=windows&logoColor=FFFFFF&labelColor=0F2433)](#-integração-com-o-windows)
 [![Zsh](https://img.shields.io/badge/shell-Zsh-3A6F8F?style=flat-square&logo=zsh&logoColor=FFFFFF&labelColor=0F2433)](https://www.zsh.org/)
-[![Starship](https://img.shields.io/badge/prompt-Starship-3A6F8F?style=flat-square&logo=starship&logoColor=FFFFFF&labelColor=0F2433)](arch/starship.toml)
+[![Powerlevel10k](https://img.shields.io/badge/prompt-Powerlevel10k-3A6F8F?style=flat-square&labelColor=0F2433)](arch/p10k.zsh)
 [![Nerd Font](https://img.shields.io/badge/fonte-Nerd%20Font-3A6F8F?style=flat-square&labelColor=0F2433)](#-nerd-font-dependência-obrigatória)
 [![pacman](https://img.shields.io/badge/pacotes-pacman-3A6F8F?style=flat-square&labelColor=0F2433)](install-deps.sh)
 [![Reversível](https://img.shields.io/badge/instala%C3%A7%C3%A3o-revers%C3%ADvel-3A6F8F?style=flat-square&labelColor=0F2433)](#-desinstalação)
@@ -250,19 +250,17 @@ Todos vêm dos repositórios oficiais do `pacman`. Nada é baixado por `curl | s
 | Cinza | `#8A9BA8` | Duração, status do Git, datas no `eza` |
 | Vermelho | `#d1393d` | Erros, comando desconhecido, usuário root |
 
-O prompt padrão é um [Starship](https://starship.rs/) (com opção de [Powerlevel10k](#trocar-o-prompt-starship-ou-powerlevel10k)) configurado em [`arch/starship.toml`](arch/starship.toml), com o logo do Arch, usuário, host, diretório, branch e status do Git, versão de Node, Python, Rust e Go, e tempo de comandos longos. O resto das cores está em [`09-theme.zsh`](09-theme.zsh).
+O prompt padrão é o [Powerlevel10k](https://github.com/romkatv/powerlevel10k) em duas linhas, já recolorido na paleta Arch e versionado em [`arch/p10k.zsh`](arch/p10k.zsh): ícone do sistema, diretório e Git à esquerda; status, tempo do comando e versões de Node, Python, Go e Rust à direita. O [`install-deps.sh`](install-deps.sh) instala o tema (veja [Prompt](#trocar-o-prompt-powerlevel10k-ou-starship)). Sem o tema, o fallback é um [Starship](https://starship.rs/) com a mesma paleta em [`arch/starship.toml`](arch/starship.toml). O resto das cores está em [`09-theme.zsh`](09-theme.zsh).
 
-### Trocar o prompt: Starship ou Powerlevel10k
+### Trocar o prompt: Powerlevel10k ou Starship
 
-O prompt padrão é o Starship. Se preferir o assistente visual do [Powerlevel10k](https://github.com/romkatv/powerlevel10k), instale o tema (ele não está nos repositórios oficiais do Arch, então o script clona o repositório do autor na tag `v1.20.0`):
+O Powerlevel10k não está nos repositórios oficiais do Arch, então o [`install-p10k.sh`](install-p10k.sh) (chamado pelo `install-deps.sh`) clona o repositório do autor na tag `v1.20.0` em `~/.local/share/powerlevel10k`. Com o tema presente, ele é o prompt, usando a configuração em Arch do repositório. Para refazer o visual:
 
 ```bash
-./install-p10k.sh
-exec zsh
 p10k configure
 ```
 
-Com o tema instalado, ele passa a ser o prompt automaticamente, e o `p10k configure` grava a sua escolha em `~/.p10k.zsh`. Para forçar um deles, em `~/.config/big-zsh/local.zsh`:
+O assistente grava em `~/.p10k.zsh`, que tem prioridade sobre o `arch/p10k.zsh`. Ele pergunta pelas cores; para manter o azul Arch, aplique depois a paleta da tabela acima nos números que ele gerar, ou parta do `arch/p10k.zsh`. Para forçar um dos dois prompts, em `~/.config/big-zsh/local.zsh`:
 
 ```zsh
 export BIG_ZSH_PROMPT=starship   # ou: p10k
@@ -315,11 +313,12 @@ wsl-arch-zsh/
 ├── 10-wsl.zsh           Integração com o Windows
 ├── arch/
 │   ├── zsh-config.zsh        Histórico, completion, título e plugins
-│   ├── zsh-prompt.zsh        Escolhe Starship ou Powerlevel10k
+│   ├── zsh-prompt.zsh        Escolhe Powerlevel10k ou Starship
+│   ├── p10k.zsh              Powerlevel10k na paleta Arch
 │   ├── starship.toml         Prompt na paleta Arch
 │   └── zsh-plugins-late.zsh  Realce de sintaxe (carregado por último)
 ├── install-deps.sh      Instalador principal
-├── install-p10k.sh      Instala o Powerlevel10k (opcional)
+├── install-p10k.sh      Instala o Powerlevel10k
 ├── setup-zshrc.sh       Adiciona o bloco ao .zshrc com backup
 ├── uninstall.sh         Remove o bloco do .zshrc com backup
 └── test-setup.sh        Verificações de sintaxe e carregamento
