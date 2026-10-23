@@ -15,7 +15,7 @@ check() {
     fi
 }
 
-check 'Sintaxe Bash dos scripts' bash -n "$project_dir/install-deps.sh" "$project_dir/install-cli-tools.sh" "$project_dir/setup-zshrc.sh" "$project_dir/uninstall.sh" "$project_dir/test-setup.sh"
+check 'Sintaxe Bash dos scripts' bash -n "$project_dir/install-deps.sh" "$project_dir/install-cli-tools.sh" "$project_dir/install-p10k.sh" "$project_dir/setup-zshrc.sh" "$project_dir/uninstall.sh" "$project_dir/test-setup.sh"
 check 'Sintaxe Zsh dos módulos' zsh -n "$project_dir/big-zsh.zsh" "$project_dir"/[0-9][0-9]-*.zsh
 check 'Sintaxe Zsh da camada Arch' zsh -n "$project_dir"/arch/*.zsh
 check 'Carregamento isolado' zsh -dfc "source '$project_dir/big-zsh.zsh'"

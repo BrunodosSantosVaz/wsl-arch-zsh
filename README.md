@@ -250,7 +250,23 @@ Todos vêm dos repositórios oficiais do `pacman`. Nada é baixado por `curl | s
 | Cinza | `#8A9BA8` | Duração, status do Git, datas no `eza` |
 | Vermelho | `#d1393d` | Erros, comando desconhecido, usuário root |
 
-O prompt é um [Starship](https://starship.rs/) configurado em [`arch/starship.toml`](arch/starship.toml), com o logo do Arch, usuário, host, diretório, branch e status do Git, versão de Node, Python, Rust e Go, e tempo de comandos longos. O resto das cores está em [`09-theme.zsh`](09-theme.zsh).
+O prompt padrão é um [Starship](https://starship.rs/) (com opção de [Powerlevel10k](#trocar-o-prompt-starship-ou-powerlevel10k)) configurado em [`arch/starship.toml`](arch/starship.toml), com o logo do Arch, usuário, host, diretório, branch e status do Git, versão de Node, Python, Rust e Go, e tempo de comandos longos. O resto das cores está em [`09-theme.zsh`](09-theme.zsh).
+
+### Trocar o prompt: Starship ou Powerlevel10k
+
+O prompt padrão é o Starship. Se preferir o assistente visual do [Powerlevel10k](https://github.com/romkatv/powerlevel10k), instale o tema (ele não está nos repositórios oficiais do Arch, então o script clona o repositório do autor na tag `v1.20.0`):
+
+```bash
+./install-p10k.sh
+exec zsh
+p10k configure
+```
+
+Com o tema instalado, ele passa a ser o prompt automaticamente, e o `p10k configure` grava a sua escolha em `~/.p10k.zsh`. Para forçar um deles, em `~/.config/big-zsh/local.zsh`:
+
+```zsh
+export BIG_ZSH_PROMPT=starship   # ou: p10k
+```
 
 ## 🪟 Integração com o Windows
 
@@ -299,10 +315,11 @@ wsl-arch-zsh/
 ├── 10-wsl.zsh           Integração com o Windows
 ├── arch/
 │   ├── zsh-config.zsh        Histórico, completion, título e plugins
-│   ├── zsh-prompt.zsh        Carrega o Starship
+│   ├── zsh-prompt.zsh        Escolhe Starship ou Powerlevel10k
 │   ├── starship.toml         Prompt na paleta Arch
 │   └── zsh-plugins-late.zsh  Realce de sintaxe (carregado por último)
 ├── install-deps.sh      Instalador principal
+├── install-p10k.sh      Instala o Powerlevel10k (opcional)
 ├── setup-zshrc.sh       Adiciona o bloco ao .zshrc com backup
 ├── uninstall.sh         Remove o bloco do .zshrc com backup
 └── test-setup.sh        Verificações de sintaxe e carregamento
